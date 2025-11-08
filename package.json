@@ -1,0 +1,58 @@
+{
+  "name": "next-image-placeholder",
+  "version": "1.0.0",
+  "description": "Lightweight server-side blur placeholder and dominant color extraction for Next.js",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:ui": "vitest --ui",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "pnpm build && pnpm test"
+  },
+  "keywords": [
+    "nextjs",
+    "image",
+    "blur",
+    "placeholder",
+    "lqip",
+    "dominant-color",
+    "optimization",
+    "blurdataurl"
+  ],
+  "author": "Solomon Akuson",
+  "license": "MIT",
+  "packageManager": "pnpm@10.20.0",
+  "peerDependencies": {
+    "sharp": "^0.34.5"
+  },
+  "dependencies": {
+    "fast-average-color-node": "^3.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.0",
+    "@vitest/ui": "^4.0.8",
+    "tsup": "^8.5.0",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.8"
+  }
+}
