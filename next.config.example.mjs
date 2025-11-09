@@ -3,21 +3,14 @@
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Ensure Sharp is treated as an external dependency
-  experimental: {
-    // For Turbopack (Next.js 15+)
-    serverComponentsExternalPackages: ['sharp', 'fast-average-color-node'],
-  },
+  // For Next.js 15+ (stable API)
+  // Prevent bundling of native dependencies like Sharp
+  serverExternalPackages: ['sharp', 'fast-average-color-node'],
 
-  // For Webpack (Next.js 14 and below)
-  webpack: (config, { isServer }) => {
-    if (isServer) {
-      // Mark Sharp as external for server-side rendering
-      config.externals = config.externals || [];
-      config.externals.push('sharp', 'fast-average-color-node');
-    }
-    return config;
-  },
+  // For Next.js 14 and below, use the experimental flag:
+  // experimental: {
+  //   serverComponentsExternalPackages: ['sharp', 'fast-average-color-node'],
+  // },
 };
 
 export default nextConfig;
