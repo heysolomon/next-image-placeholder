@@ -17,7 +17,7 @@ Lightweight server-side blur placeholder and dominant color extraction for Next.
 
 ## Installation
 ```bash
-pnpm add next-image-placeholder sharp
+npm install next-image-placeholder sharp
 ```
 
 **Note**: `sharp` is a peer dependency. Make sure to install it.
