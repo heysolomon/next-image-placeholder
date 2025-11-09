@@ -27,7 +27,8 @@
     "test:watch": "vitest",
     "test:ui": "vitest --ui",
     "typecheck": "tsc --noEmit",
-    "prepublishOnly": "pnpm build && pnpm test"
+    "prepublishOnly": "pnpm build && pnpm test",
+    "example": "tsx examples/basic-usage.ts"
   },
   "keywords": [
     "nextjs",
@@ -39,7 +40,15 @@
     "optimization",
     "blurdataurl"
   ],
-  "author": "Solomon Akuson",
+  "author": "Solomon Akuson <akusonsolomon15@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/heysolomon/next-image-placeholder"
+  },
+  "bugs": {
+    "url": "https://github.com/heysolomon/next-image-placeholder/issues"
+  },
+  "homepage": "https://github.com/heysolomon/next-image-placeholder#readme",
   "license": "MIT",
   "packageManager": "pnpm@10.20.0",
   "peerDependencies": {
@@ -52,6 +61,7 @@
     "@types/node": "^24.10.0",
     "@vitest/ui": "^4.0.8",
     "tsup": "^8.5.0",
+    "tsx": "^4.20.6",
     "typescript": "^5.9.3",
     "vitest": "^4.0.8"
   }
