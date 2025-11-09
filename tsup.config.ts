@@ -9,7 +9,10 @@ export default defineConfig({
     treeshake: true,
     splitting: false,
     minify: false,
+    platform: 'node',
+    target: 'node18',
     external: ['sharp', 'fast-average-color-node'],
+    noExternal: [],
     outExtension({ format }) {
         return {
             js: format === 'cjs' ? '.cjs' : '.mjs'

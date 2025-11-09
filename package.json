@@ -9,8 +9,12 @@
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.cjs"
+      "react-server": "./dist/index.mjs",
+      "node": {
+        "import": "./dist/index.mjs",
+        "require": "./dist/index.cjs"
+      },
+      "default": "./dist/index.mjs"
     },
     "./package.json": "./package.json"
   },
@@ -20,6 +24,10 @@
     "LICENSE"
   ],
   "sideEffects": false,
+  "browser": {
+    "./dist/index.mjs": false,
+    "./dist/index.cjs": false
+  },
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
