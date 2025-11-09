@@ -2,8 +2,8 @@
 
 Lightweight server-side blur placeholder and dominant color extraction for Next.js images.
 
-[![npm version](https://img.shields.io/npm/v/@heysolomon/next-image-placeholder)](https://npmjs.com/package/@heysolomon/next-image-placeholder)
-[![Bundle Size](https://img.shields.io/bundlephobia/minzip/@heysolomon/next-image-placeholder)](https://bundlephobia.com/package/@heysolomon/next-image-placeholder)
+[![npm version](https://img.shields.io/npm/v/next-image-placeholder)](https://npmjs.com/package/next-image-placeholder)
+[![Bundle Size](https://img.shields.io/bundlephobia/minzip/next-image-placeholder)](https://bundlephobia.com/package/next-image-placeholder)
 
 ## Features
 
