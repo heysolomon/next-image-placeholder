@@ -1,6 +1,6 @@
 {
   "name": "next-image-placeholder",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Lightweight server-side blur placeholder and dominant color extraction for Next.js",
   "type": "module",
   "main": "./dist/index.cjs",
