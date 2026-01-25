@@ -80,26 +80,43 @@ export async function getPlaceholderAction(imageUrl: string) {
   return getPlaceholder(imageUrl)
 }
 
-// 2. Use the hook in your client component
+// 2a. Use the component (Recommended)
+'use client'
+import { PlaceholderImage } from 'next-image-placeholder/react'
+import { getPlaceholderAction } from './actions'
+
+export function Gallery({ src }: { src: string }) {
+  return (
+    <PlaceholderImage
+      src={src}
+      action={getPlaceholderAction}
+      width={400}
+      height={300}
+      alt="Gallery Image"
+      className="rounded-lg"
+    />
+  )
+}
+
+// 2b. Or use the hook for custom control
 'use client'
 import Image from 'next/image'
 import { usePlaceholder } from 'next-image-placeholder/react'
 import { getPlaceholderAction } from './actions'
 
-export function ImageCard({ src }: { src: string }) {
-  const { data, isLoading } = usePlaceholder(src, getPlaceholderAction)
+export function CustomCard({ src }: { src: string }) {
+  const { data } = usePlaceholder(src, getPlaceholderAction)
+
+  if (!data?.base64) return <Skeleton />
 
   return (
-    <div style={{ backgroundColor: data?.color ?? '#e5e7eb' }}>
-      <Image
-        src={src}
-        width={400}
-        height={300}
-        placeholder={data?.base64 ? 'blur' : 'empty'}
-        blurDataURL={data?.base64}
-        alt="Image"
-      />
-    </div>
+    <Image
+      src={src}
+      placeholder="blur"
+      blurDataURL={data.base64}
+      style={{ backgroundColor: data.color }}
+      {...props}
+    />
   )
 }
 ```
@@ -173,6 +190,27 @@ interface UsePlaceholderReturn {
   error: Error | null             // Any error
   refetch: () => void             // Manual refetch
 }
+```
+
+### `<PlaceholderImage>` Component
+
+A wrapper around `next/image` that automatically handles placeholder generation.
+
+**Props:**
+- `action`: `PlaceholderAction` - Server action (required)
+- `placeholderOptions`: `PlaceholderOptions` - Optional configuration
+- `fallback`: `React.ReactNode` - Element to show while loading (optional)
+- ...all other `next/image` props
+
+```tsx
+<PlaceholderImage
+  src="/image.jpg"
+  action={getPlaceholderAction}
+  width={800}
+  height={600}
+  alt="Image"
+  fallback={<div className="bg-gray-200 w-full h-full" />}
+/>
 ```
 
 ## Usage Examples

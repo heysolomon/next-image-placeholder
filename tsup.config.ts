@@ -20,7 +20,7 @@ export default defineConfig([
     },
     // React entry (client-side)
     {
-        entry: ['src/react.ts'],
+        entry: ['src/react.tsx'],
         format: ['esm', 'cjs'],
         dts: true,
         sourcemap: true,
@@ -30,7 +30,7 @@ export default defineConfig([
         minify: false,
         platform: 'browser',
         target: 'es2020',
-        external: ['react'],
+        external: ['react', 'next', 'next/image'],
         outExtension({ format }) {
             return { js: format === 'cjs' ? '.cjs' : '.mjs' }
         }
