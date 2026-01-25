@@ -9,18 +9,20 @@ Lightweight server-side blur placeholder and dominant color extraction for Next.
 
 - 🎨 **Blur Placeholders**: Generate tiny (~150 bytes) blur placeholders using LQIP technique
 - 🌈 **Dominant Colors**: Extract dominant colors for instant backgrounds
-- ⚡️ **Server-Side Only**: Zero client-side JavaScript overhead
+- ⚡️ **Server-Side Processing**: Zero client-side JavaScript overhead for image processing
+- ⚛️ **React Hook**: `usePlaceholder` hook for easy client component usage
 - 🔧 **Zero Config**: Works out of the box with sensible defaults
 - 📦 **Lightweight**: Minimal dependencies, tree-shakable
 - ✅ **TypeScript**: Fully typed with comprehensive interfaces
-- 🚀 **Next.js 13+**: Built for App Router and Server Components
+- 🚀 **Next.js 13+**: Built for App Router, Server Components, and Server Actions
 
 ## Installation
+
 ```bash
 npm install next-image-placeholder sharp
 ```
 
-**Note**: `sharp` is a peer dependency. Make sure to install it.
+> **Note**: `sharp` is a peer dependency required for image processing. If using the React hook in client components, React 18+ is also required (already included in Next.js projects).
 
 ## Quick Start
 
@@ -66,6 +68,40 @@ const color = await getColor('/image.jpg')
 <div style={{ backgroundColor: color }}>
   <Image src="/image.jpg" fill alt="..." />
 </div>
+```
+
+### Client Components (with Server Actions)
+```typescript
+// 1. Create a server action (app/actions.ts)
+'use server'
+import { getPlaceholder } from 'next-image-placeholder'
+
+export async function getPlaceholderAction(imageUrl: string) {
+  return getPlaceholder(imageUrl)
+}
+
+// 2. Use the hook in your client component
+'use client'
+import Image from 'next/image'
+import { usePlaceholder } from 'next-image-placeholder/react'
+import { getPlaceholderAction } from './actions'
+
+export function ImageCard({ src }: { src: string }) {
+  const { data, isLoading } = usePlaceholder(src, getPlaceholderAction)
+
+  return (
+    <div style={{ backgroundColor: data?.color ?? '#e5e7eb' }}>
+      <Image
+        src={src}
+        width={400}
+        height={300}
+        placeholder={data?.base64 ? 'blur' : 'empty'}
+        blurDataURL={data?.base64}
+        alt="Image"
+      />
+    </div>
+  )
+}
 ```
 
 ## API Reference
@@ -119,6 +155,25 @@ Extracts only dominant color (fastest option).
 Gets RGB values instead of hex.
 
 **Returns:** `Promise<{ r: number; g: number; b: number; a: number }>`
+
+### `usePlaceholder(imageUrl, action, options?)` (React Hook)
+
+React hook for client components. Requires a server action to call the main functions.
+
+**Parameters:**
+- `imageUrl`: `string | null | undefined` - Image URL
+- `action`: `PlaceholderAction` - Server action wrapping `getPlaceholder`
+- `options?`: `PlaceholderOptions` - Optional configuration
+
+**Returns:** `UsePlaceholderReturn`
+```typescript
+interface UsePlaceholderReturn {
+  data: PlaceholderResult | null  // Placeholder data
+  isLoading: boolean              // Loading state
+  error: Error | null             // Any error
+  refetch: () => void             // Manual refetch
+}
+```
 
 ## Usage Examples
 
@@ -217,7 +272,8 @@ import type {
 ## Requirements
 
 - Node.js 18+ (for native fetch)
-- Sharp ^0.33.0 (peer dependency)
+- Sharp ^0.34.0 (peer dependency)
+- React 18+ (peer dependency, for `usePlaceholder` hook only)
 
 ## License
 
