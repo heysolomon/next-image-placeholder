@@ -205,7 +205,7 @@ export function DemoTabs({
                                         key={`inactive-${key}`}
                                         ref={el => { buttonRefs.current[index] = el }}
                                         onClick={() => setMode(key)}
-                                        className="px-4 py-2 rounded-full text-xs font-medium transition-colors whitespace-nowrap text-neutral-500 hover:text-neutral-300 relative"
+                                        className="px-4 py-2 rounded-full text-xs font-medium transition-colors whitespace-nowrap text-neutral-500 hover:text-neutral-300 relative active:scale-[0.97]"
                                     >
                                         {modes[key].label}
                                     </button>
@@ -214,7 +214,7 @@ export function DemoTabs({
 
                             {/* Layer 2: Active State (Top - Clipped) */}
                             <div
-                                className="absolute inset-0.5 flex bg-neutral-800 z-10 pointer-events-none overflow-hidden transition-[clip-path] duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]"
+                                className="absolute inset-0.5 flex bg-neutral-800 z-10 pointer-events-none overflow-hidden transition-[clip-path] duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] will-change-[clip-path]"
                                 style={{ clipPath }}
                             >
                                 {(Object.keys(modes) as DemoMode[]).map((key) => (
@@ -235,7 +235,7 @@ export function DemoTabs({
                                     onClick={handleRefresh}
                                     animate={{ rotate: isRefreshing ? 360 : 0 }}
                                     transition={{ duration: 0.5, ease: "easeInOut" }}
-                                    className="text-neutral-400 hover:text-white transition-colors p-2 hover:bg-neutral-800 rounded-md"
+                                    className="text-neutral-400 hover:text-white transition-colors p-2 hover:bg-neutral-800 rounded-md active:scale-[0.97] touch-none"
                                 >
                                     <RotateCw size={14} />
                                 </motion.button>
@@ -244,7 +244,7 @@ export function DemoTabs({
                             <Tooltip content="Copy Code">
                                 <button
                                     onClick={copyCode}
-                                    className="text-neutral-400 hover:text-white transition-colors p-2 hover:bg-neutral-800 rounded-md"
+                                    className="text-neutral-400 hover:text-white transition-colors p-2 hover:bg-neutral-800 rounded-md active:scale-[0.97] touch-none"
                                 >
                                     {copied ? <Check size={14} /> : <Copy size={14} />}
                                 </button>
