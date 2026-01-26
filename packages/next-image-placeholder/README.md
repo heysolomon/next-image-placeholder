@@ -313,6 +313,11 @@ import type {
 - Sharp ^0.34.0 (peer dependency)
 - React 18+ (peer dependency, for `usePlaceholder` hook only)
 
+## Acknowledgements
+
+- [sharp](https://sharp.pixelplumbing.com/) - High performance Node.js image processing
+- [fast-average-color-node](https://github.com/fast-average-color/fast-average-color-node) - A simple library that calculates the average color of an image
+
 ## License
 
 MIT

@@ -36,6 +36,11 @@ To engage with this project locally:
 
 We welcome contributions! Please see our [CONTRIBUTING.md](./CONTRIBUTING.md) for details on how to get started.
 
+## Acknowledgements
+
+- [sharp](https://sharp.pixelplumbing.com/) - High performance Node.js image processing
+- [fast-average-color-node](https://github.com/fast-average-color/fast-average-color-node) - A simple library that calculates the average color of an image
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.

@@ -1,8 +1,79 @@
 import { StripePanels } from "@/components/stripe-panels";
+import { DemoTabs } from "@/components/demo-tabs";
 import { ComponentPreview } from "@/components/component-preview";
 import Image from "next/image";
+import { getPlaceholder } from "next-image-placeholder";
+import { codeToHtml } from "shiki";
 
-export default function Home() {
+const DEMO_IMAGE = "https://images.unsplash.com/photo-1619441207978-3d326c46e2c9?q=80&w=2669&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
+
+export default async function Home() {
+  const initialData = await getPlaceholder(DEMO_IMAGE);
+
+  const blurCode = `// Server Component
+const { base64 } = await getPlaceholder(
+  "${DEMO_IMAGE}"
+);
+
+// Render
+<Image
+  src="${DEMO_IMAGE}"
+  placeholder="blur"
+  blurDataURL={base64}
+  alt="Demo"
+/>`;
+
+  const colorCode = `// Server Component
+const color = await getColor(
+  "${DEMO_IMAGE}"
+);
+
+// Render
+<div style={{ backgroundColor: color }}>
+  <Image src="..." />
+</div>`;
+
+  const clientCode = `// 1. Create Server Action (app/actions.ts)
+'use server'
+import { getPlaceholder } from 'next-image-placeholder'
+
+export async function getPlaceholderAction(imageUrl: string) {
+  return getPlaceholder(imageUrl)
+}
+
+// 2. Use the component (Recommended)
+'use client'
+import { PlaceholderImage } from 'next-image-placeholder/react'
+import { getPlaceholderAction } from './actions'
+
+export function Gallery({ src }: { src: string }) {
+  return (
+    <PlaceholderImage
+      src={src}
+      action={getPlaceholderAction}
+      width={400}
+      height={300}
+      alt="Gallery Image"
+      className="rounded-lg"
+    />
+  )
+}`;
+
+  const codeSnippets = {
+    blur: {
+      code: blurCode,
+      html: await codeToHtml(blurCode, { lang: 'tsx', theme: 'github-dark-dimmed' })
+    },
+    color: {
+      code: colorCode,
+      html: await codeToHtml(colorCode, { lang: 'tsx', theme: 'github-dark-dimmed' })
+    },
+    client: {
+      code: clientCode,
+      html: await codeToHtml(clientCode, { lang: 'tsx', theme: 'github-dark-dimmed' })
+    }
+  };
+
   return (
     <div className="relative min-h-screen flex flex-col items-center overflow-x-hidden">
       <StripePanels />
@@ -12,16 +83,16 @@ export default function Home() {
         <div className="h-px w-full bg-neutral-200 dark:bg-neutral-800" />
 
         {/* Hero Section */}
-        <div className="flex flex-col items-center justify-center pt-32 pb-24 px-6 border-b border-neutral-200 dark:border-neutral-800">
-          <div className="space-y-8 text-center max-w-4xl">
+        <div className="flex flex-col items-center justify-center pt-20 pb-0 px-6">
+          <div className="space-y-6 text-center max-w-4xl">
             <div className="inline-flex items-center px-3 py-1 rounded-full border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900 text-xs font-medium text-neutral-600 dark:text-neutral-400 mb-4">
               v1.1.2 is now available
             </div>
 
             <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight text-neutral-900 dark:text-neutral-50">
-              Image Placeholders,<br />
+              next image<br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-neutral-500 to-neutral-800 dark:from-neutral-400 dark:to-neutral-100">
-                Perfected.
+                placeholder
               </span>
             </h1>
 
@@ -30,7 +101,7 @@ export default function Home() {
               Zero client-side JavaScript for generation.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center pt-8">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center pt-6">
               <a
                 href="/docs"
                 className="px-6 py-3 rounded-full bg-neutral-900 dark:bg-neutral-50 text-neutral-50 dark:text-neutral-900 font-medium text-sm hover:opacity-90 transition-opacity text-center"
@@ -49,74 +120,15 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Feature Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-neutral-200 dark:divide-neutral-800 border-b border-neutral-200 dark:border-neutral-800">
-          {/* Card 1 */}
-          <div className="p-12 relative group">
-            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-indigo-500 to-purple-500 opacity-0 group-hover:opacity-100 transition-opacity" />
-            <h3 className="text-lg font-semibold mb-3 text-neutral-900 dark:text-neutral-50">Server-Side Optimisation</h3>
-            <p className="text-neutral-500 dark:text-neutral-400 text-sm leading-relaxed">
-              Generate placeholders at build time or request time on the server. No client-side waterfall.
-            </p>
+        {/* Live Demo Section - Show, Don't Tell */}
+        <div className="divide-y divide-neutral-200 dark:divide-neutral-800 border-b border-neutral-200 dark:border-neutral-800">
+          <div className="px-8 pb-12 pt-12 lg:px-12 lg:pb-12 lg:pt-12">
+            <DemoTabs
+              initialData={initialData}
+              sourceUrl={DEMO_IMAGE}
+              codeSnippets={codeSnippets}
+            />
           </div>
-
-          {/* Card 2 */}
-          <div className="p-12 relative group">
-            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-cyan-500 opacity-0 group-hover:opacity-100 transition-opacity" />
-            <h3 className="text-lg font-semibold mb-3 text-neutral-900 dark:text-neutral-50">Dominant Color</h3>
-            <p className="text-neutral-500 dark:text-neutral-400 text-sm leading-relaxed">
-              Automatically extract legitimate dominant colors from images for a smooth loading experience.
-            </p>
-          </div>
-
-          {/* Card 3 */}
-          <div className="p-12 relative group">
-            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-emerald-500 to-green-500 opacity-0 group-hover:opacity-100 transition-opacity" />
-            <h3 className="text-lg font-semibold mb-3 text-neutral-900 dark:text-neutral-50">Typesafe & Lightweight</h3>
-            <p className="text-neutral-500 dark:text-neutral-400 text-sm leading-relaxed">
-              Built with TypeScript. Minimal dependencies. Designed for modern React Server Components.
-            </p>
-          </div>
-        </div>
-
-        {/* Demo Section */}
-        <div className="p-12 border-b border-neutral-200 dark:border-neutral-800">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold mb-4 text-neutral-900 dark:text-neutral-50">See it in action</h2>
-            <p className="text-neutral-500 dark:text-neutral-400 max-w-xl mx-auto">
-              The library generates blur data URLs that you can pass directly to the Next.js Image component.
-            </p>
-          </div>
-
-          <ComponentPreview
-            code={`import Image from "next/image";
-import { getPlaceholder } from "next-image-placeholder";
-
-export default async function Page() {
-  const { blurDataURL } = await getPlaceholder(
-    "https://images.unsplash.com/photo-1579546929518-9e396f3cc809"
-  );
-
-  return (
-    <Image
-      src="https://images.unsplash.com/photo-1579546929518-9e396f3cc809"
-      placeholder="blur"
-      blurDataURL={blurDataURL}
-      width={800}
-      height={600}
-      alt="Gradient"
-    />
-  );
-}`}
-            usage="npm install next-image-placeholder fast-average-color-node sharp"
-          >
-            <div className="relative w-full max-w-md aspect-[4/3] rounded-lg overflow-hidden shadow-fancy">
-              {/* Mockup for preview since we can't run server actions in client component easily without setup */}
-              <div className="w-full h-full bg-neutral-200 animate-pulse flex items-center justify-center text-neutral-400 text-sm">
-                Image Preview
-              </div>
-            </div>
-          </ComponentPreview>
         </div>
 
       </main>
