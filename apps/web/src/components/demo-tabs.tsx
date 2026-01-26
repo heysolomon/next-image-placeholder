@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import NextImage from "next/image";
 import { usePlaceholder, PlaceholderImage } from "next-image-placeholder/react";
 import { getPlaceholderAction } from "@/app/actions";
+import { Tooltip } from "@/components/ui/tooltip";
 
 type DemoMode = "blur" | "color" | "client";
 
@@ -41,9 +42,10 @@ export function DemoTabs({
                 const containerRect = containerRef.current.getBoundingClientRect();
                 const activeRect = activeEl.getBoundingClientRect();
 
-                // Calculate relative positions
-                const left = activeRect.left - containerRect.left;
-                const right = containerRect.width - (left + activeRect.width);
+                // Calculate relative positions (accounting for container border + padding)
+                const offset = 3; // 1px border + 2px padding (p-0.5)
+                const left = (activeRect.left - containerRect.left) - offset;
+                const right = (containerRect.width - (activeRect.left - containerRect.left + activeRect.width)) - offset;
 
                 setClipPath(`inset(0 ${right}px 0 ${left}px round 9999px)`);
             }
@@ -228,22 +230,25 @@ export function DemoTabs({
                             </div>
                         </div>
                         <div className="flex items-center gap-1">
-                            <motion.button
-                                onClick={handleRefresh}
-                                animate={{ rotate: isRefreshing ? 360 : 0 }}
-                                transition={{ duration: 0.5, ease: "easeInOut" }}
-                                className="text-neutral-400 hover:text-white transition-colors p-2 hover:bg-neutral-800 rounded-md"
-                                title="Refresh Demo"
-                            >
-                                <RotateCw size={14} />
-                            </motion.button>
-                            <button
-                                onClick={copyCode}
-                                className="text-neutral-400 hover:text-white transition-colors p-2 hover:bg-neutral-800 rounded-md"
-                                title="Copy Code"
-                            >
-                                {copied ? <Check size={14} /> : <Copy size={14} />}
-                            </button>
+                            <Tooltip content="Refresh Demo">
+                                <motion.button
+                                    onClick={handleRefresh}
+                                    animate={{ rotate: isRefreshing ? 360 : 0 }}
+                                    transition={{ duration: 0.5, ease: "easeInOut" }}
+                                    className="text-neutral-400 hover:text-white transition-colors p-2 hover:bg-neutral-800 rounded-md"
+                                >
+                                    <RotateCw size={14} />
+                                </motion.button>
+                            </Tooltip>
+
+                            <Tooltip content="Copy Code">
+                                <button
+                                    onClick={copyCode}
+                                    className="text-neutral-400 hover:text-white transition-colors p-2 hover:bg-neutral-800 rounded-md"
+                                >
+                                    {copied ? <Check size={14} /> : <Copy size={14} />}
+                                </button>
+                            </Tooltip>
                         </div>
                     </div>
                     <div className="flex-1 p-6 overflow-x-auto custom-scrollbar">
