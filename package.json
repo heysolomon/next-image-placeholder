@@ -1,91 +1,21 @@
 {
-  "name": "next-image-placeholder",
-  "version": "1.1.2",
-  "description": "Lightweight server-side blur placeholder and dominant color extraction for Next.js",
-  "type": "module",
-  "main": "./dist/index.cjs",
-  "module": "./dist/index.mjs",
-  "types": "./dist/index.d.ts",
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "react-server": "./dist/index.mjs",
-      "node": {
-        "import": "./dist/index.mjs",
-        "require": "./dist/index.cjs"
-      },
-      "default": "./dist/index.mjs"
-    },
-    "./react": {
-      "types": "./dist/react.d.ts",
-      "import": "./dist/react.mjs",
-      "require": "./dist/react.cjs",
-      "default": "./dist/react.mjs"
-    },
-    "./package.json": "./package.json"
-  },
-  "files": [
-    "dist",
-    "README.md",
-    "LICENSE"
-  ],
-  "sideEffects": false,
-  "browser": {
-    "./dist/index.mjs": false,
-    "./dist/index.cjs": false
-  },
+  "name": "next-image-placeholder-monorepo",
+  "private": true,
   "scripts": {
-    "build": "tsup",
-    "dev": "tsup --watch",
-    "test": "vitest run",
-    "test:watch": "vitest",
-    "test:ui": "vitest --ui",
-    "typecheck": "tsc --noEmit",
-    "prepublishOnly": "pnpm build && pnpm test",
-    "example": "tsx examples/basic-usage.ts"
+    "build": "pnpm -r build",
+    "dev": "pnpm -r dev",
+    "test": "pnpm -r test",
+    "lint": "pnpm -r lint",
+    "typecheck": "pnpm -r typecheck"
   },
-  "keywords": [
-    "nextjs",
-    "image",
-    "blur",
-    "placeholder",
-    "lqip",
-    "dominant-color",
-    "optimization",
-    "blurdataurl"
-  ],
-  "author": "Solomon Akuson <akusonsolomon15@gmail.com>",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/heysolomon/next-image-placeholder"
-  },
-  "bugs": {
-    "url": "https://github.com/heysolomon/next-image-placeholder/issues"
-  },
-  "homepage": "https://github.com/heysolomon/next-image-placeholder#readme",
-  "license": "MIT",
-  "packageManager": "pnpm@10.20.0",
-  "peerDependencies": {
-    "next": ">=13.0.0",
-    "react": ">=18.0.0",
-    "sharp": ">=0.34.5"
-  },
-  "dependencies": {
-    "fast-average-color-node": "^3.1.0"
+  "devDependencies": {
+    "typescript": "^5.9.3",
+    "turbo": "^2.3.3"
   },
   "pnpm": {
     "overrides": {
       "sharp": "^0.34.5"
     }
   },
-  "devDependencies": {
-    "@types/node": "^24.10.0",
-    "@types/react": "^19.2.9",
-    "@vitest/ui": "^4.0.8",
-    "next": "^16.1.4",
-    "tsup": "^8.5.0",
-    "tsx": "^4.20.6",
-    "typescript": "^5.9.3",
-    "vitest": "^4.0.8"
-  }
+  "packageManager": "pnpm@10.20.0"
 }
