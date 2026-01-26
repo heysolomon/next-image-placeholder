@@ -18,7 +18,7 @@ export default function Home() {
               v1.1.2 is now available
             </div>
 
-            <h1 className="text-6xl md:text-7xl font-bold tracking-tight text-neutral-900 dark:text-neutral-50">
+            <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight text-neutral-900 dark:text-neutral-50">
               Image Placeholders,<br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-neutral-500 to-neutral-800 dark:from-neutral-400 dark:to-neutral-100">
                 Perfected.
@@ -30,10 +30,10 @@ export default function Home() {
               Zero client-side JavaScript for generation.
             </p>
 
-            <div className="flex gap-4 justify-center pt-8">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center pt-8">
               <a
                 href="/docs"
-                className="px-6 py-3 rounded-full bg-neutral-900 dark:bg-neutral-50 text-neutral-50 dark:text-neutral-900 font-medium text-sm hover:opacity-90 transition-opacity"
+                className="px-6 py-3 rounded-full bg-neutral-900 dark:bg-neutral-50 text-neutral-50 dark:text-neutral-900 font-medium text-sm hover:opacity-90 transition-opacity text-center"
               >
                 Get Started
               </a>
@@ -41,7 +41,7 @@ export default function Home() {
                 href="https://github.com/heysolomon/next-image-placeholder"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-6 py-3 rounded-full border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950 text-neutral-900 dark:text-neutral-50 font-medium text-sm hover:bg-neutral-50 dark:hover:bg-neutral-900 transition-colors"
+                className="px-6 py-3 rounded-full border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950 text-neutral-900 dark:text-neutral-50 font-medium text-sm hover:bg-neutral-50 dark:hover:bg-neutral-900 transition-colors text-center"
               >
                 GitHub
               </a>
@@ -122,8 +122,8 @@ export default async function Page() {
       </main>
 
       <footer className="w-full max-w-6xl border-b border-x border-neutral-200 dark:border-neutral-800 py-12 px-6">
-        <div className="flex justify-between items-center">
-          <p className="text-sm text-neutral-500 dark:text-neutral-400">
+        <div className="flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-0">
+          <p className="text-sm text-neutral-500 dark:text-neutral-400 text-center sm:text-left">
             © {new Date().getFullYear()} next-image-placeholder. MIT License.
           </p>
           <div className="flex gap-6">
