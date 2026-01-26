@@ -133,7 +133,7 @@ export function Gallery({ src }: { src: string }) {
 
       </main>
 
-      <footer className="w-full max-w-6xl border-b border-x border-neutral-200 dark:border-neutral-800 py-12 px-6">
+      <footer className="w-full max-w-6xl border-b border-neutral-200 dark:border-neutral-800 py-12 px-6">
         <div className="flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-0">
           <p className="text-sm text-neutral-500 dark:text-neutral-400 text-center sm:text-left">
             © {new Date().getFullYear()} next-image-placeholder. MIT License.
