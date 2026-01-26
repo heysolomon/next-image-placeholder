@@ -231,14 +231,17 @@ export function DemoTabs({
                         </div>
                         <div className="flex items-center gap-1">
                             <Tooltip content="Refresh Demo">
-                                <motion.button
+                                <button
                                     onClick={handleRefresh}
-                                    animate={{ rotate: isRefreshing ? 360 : 0 }}
-                                    transition={{ duration: 0.5, ease: "easeInOut" }}
                                     className="text-neutral-400 hover:text-white transition-colors p-2 hover:bg-neutral-800 rounded-md active:scale-[0.97] touch-none"
                                 >
-                                    <RotateCw size={14} />
-                                </motion.button>
+                                    <motion.div
+                                        animate={{ rotate: isRefreshing ? 360 : 0 }}
+                                        transition={{ duration: 0.5, ease: "easeInOut" }}
+                                    >
+                                        <RotateCw size={14} />
+                                    </motion.div>
+                                </button>
                             </Tooltip>
 
                             <Tooltip content="Copy Code">
