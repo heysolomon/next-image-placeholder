@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { Copy, Check, RotateCw } from "lucide-react";
 import { motion } from "framer-motion";
@@ -24,6 +24,38 @@ export function DemoTabs({
     const [refreshKey, setRefreshKey] = useState(0);
     const [isRefreshing, setIsRefreshing] = useState(false);
     const [isDemoing, setIsDemoing] = useState(false);
+
+    // Clip-path animation state
+    const [clipPath, setClipPath] = useState("inset(0 100% 0 0 round 9999px)");
+    const containerRef = useRef<HTMLDivElement>(null);
+    const buttonRefs = useRef<(HTMLButtonElement | null)[]>([]);
+
+    useEffect(() => {
+        const updateClipPath = () => {
+            if (!containerRef.current) return;
+
+            const modeIndex = (Object.keys(modes) as DemoMode[]).indexOf(mode);
+            const activeEl = buttonRefs.current[modeIndex];
+
+            if (activeEl) {
+                const containerRect = containerRef.current.getBoundingClientRect();
+                const activeRect = activeEl.getBoundingClientRect();
+
+                // Calculate relative positions
+                const left = activeRect.left - containerRect.left;
+                const right = containerRect.width - (left + activeRect.width);
+
+                setClipPath(`inset(0 ${right}px 0 ${left}px round 9999px)`);
+            }
+        };
+
+        // Initial update and on mode change
+        updateClipPath();
+
+        // Update on resize
+        window.addEventListener('resize', updateClipPath);
+        return () => window.removeEventListener('resize', updateClipPath);
+    }, [mode]);
 
     const handleRefresh = () => {
         setIsRefreshing(true);
@@ -70,38 +102,6 @@ export function DemoTabs({
         setCopied(true);
         setTimeout(() => setCopied(false), 2000);
     };
-
-    return (
-    const [clipPath, setClipPath] = useState("inset(0 100% 0 0 round 9999px)");
-    const containerRef = useRef<HTMLDivElement>(null);
-    const buttonRefs = useRef<(HTMLButtonElement | null)[]>([]);
-
-    useEffect(() => {
-        const updateClipPath = () => {
-            if (!containerRef.current) return;
-
-            const modeIndex = (Object.keys(modes) as DemoMode[]).indexOf(mode);
-            const activeEl = buttonRefs.current[modeIndex];
-
-            if (activeEl) {
-                const containerRect = containerRef.current.getBoundingClientRect();
-                const activeRect = activeEl.getBoundingClientRect();
-
-                // Calculate relative positions
-                const left = activeRect.left - containerRect.left;
-                const right = containerRect.width - (left + activeRect.width);
-
-                setClipPath(`inset(0 ${right}px 0 ${left}px round 9999px)`);
-            }
-        };
-
-        // Initial update and on mode change
-        updateClipPath();
-
-        // Update on resize
-        window.addEventListener('resize', updateClipPath);
-        return () => window.removeEventListener('resize', updateClipPath);
-    }, [mode]);
 
     return (
         <div className="w-full max-w-5xl mx-auto">
@@ -218,7 +218,7 @@ export function DemoTabs({
                                 {(Object.keys(modes) as DemoMode[]).map((key) => (
                                     <button
                                         key={`active-${key}`}
-                                        className="px-4 py-2 rounded-full text-xs font-medium whitespace-nowrap text-white shadow-sm ring-1 ring-white/10"
+                                        className="px-4 py-2 rounded-full text-xs font-medium whitespace-nowrap text-white"
                                         aria-hidden="true"
                                         tabIndex={-1}
                                     >
