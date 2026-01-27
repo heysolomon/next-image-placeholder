@@ -1,4 +1,23 @@
 import { defineConfig } from 'tsup'
+import { readFile, writeFile } from 'node:fs/promises'
+import { join } from 'node:path'
+
+async function addUseClientDirective(param: { output: string[] }) {
+    const files = ['react.cjs', 'react.mjs']
+
+    for (const file of files) {
+        try {
+            const filePath = join(process.cwd(), 'dist', file)
+            const content = await readFile(filePath, 'utf-8')
+            if (!content.includes('"use client"')) {
+                await writeFile(filePath, '"use client";\n' + content)
+                console.log(`Examples: injected "use client" into ${file}`)
+            }
+        } catch (err) {
+            // Ignore if file doesn't exist yet
+        }
+    }
+}
 
 export default defineConfig([
     // Main entry (Node.js/server-side)
@@ -33,6 +52,9 @@ export default defineConfig([
         external: ['react', 'next', 'next/image'],
         outExtension({ format }) {
             return { js: format === 'cjs' ? '.cjs' : '.mjs' }
+        },
+        async onSuccess() {
+            await addUseClientDirective({ output: [] })
         }
     }
 ])

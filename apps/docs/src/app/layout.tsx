@@ -1,3 +1,4 @@
+import "./globals.css";
 import { StripePanels } from "@/components/stripe-panels";
 import { cn } from "@/lib/utils";
 

@@ -1,4 +1,4 @@
-'use client'
+
 
 import { useState, useEffect, useCallback, useRef, useTransition } from 'react'
 import Image from 'next/image'
