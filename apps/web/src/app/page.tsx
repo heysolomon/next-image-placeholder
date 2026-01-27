@@ -139,7 +139,7 @@ export function Gallery({ src }: { src: string }) {
             © {new Date().getFullYear()} next-image-placeholder. MIT License.
           </p>
           <div className="flex gap-6">
-            <a href="#" className="text-sm text-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-50 transition-colors">Documentation</a>
+            <a href="/docs" className="text-sm text-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-50 transition-colors">Documentation</a>
             <a href="#" className="text-sm text-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-50 transition-colors">Twitter</a>
           </div>
         </div>
