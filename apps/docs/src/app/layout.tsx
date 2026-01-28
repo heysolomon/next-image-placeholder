@@ -19,7 +19,7 @@ export default function RootLayout({
           <div className="w-full relative z-0 h-full flex flex-col bg-white dark:bg-neutral-950">
 
             <header className="h-16 shrink-0 border-b border-neutral-200 dark:border-neutral-800 flex items-center px-6 justify-between bg-neutral-50/80 dark:bg-neutral-950/80 backdrop-blur-sm z-50">
-              <a href="/" className="hover:opacity-80 transition-opacity">
+              <a href="https://next-image-placeholder-web.vercel.app" className="hover:opacity-80 transition-opacity">
                 <Logo />
               </a>
               <nav className="flex gap-4 text-sm text-neutral-500">

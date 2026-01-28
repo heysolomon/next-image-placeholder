@@ -103,7 +103,7 @@ export function Gallery({ src }: { src: string }) {
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center pt-6">
               <a
-                href="/docs"
+                href="https://next-image-placeholder.vercel.app/"
                 className="px-6 py-3 rounded-full bg-neutral-900 dark:bg-neutral-50 text-neutral-50 dark:text-neutral-900 font-medium text-sm hover:opacity-90 transition-opacity text-center"
               >
                 Get Started
@@ -139,8 +139,8 @@ export function Gallery({ src }: { src: string }) {
             © {new Date().getFullYear()} next-image-placeholder. MIT License.
           </p>
           <div className="flex gap-6">
-            <a href="/docs" className="text-sm text-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-50 transition-colors">Documentation</a>
-            <a href="#" className="text-sm text-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-50 transition-colors">Twitter</a>
+            <a href="https://next-image-placeholder.vercel.app/" className="text-sm text-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-50 transition-colors">Documentation</a>
+            <a href="https://x.com/heysolomon" className="text-sm text-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-50 transition-colors">Twitter</a>
           </div>
         </div>
       </footer>
