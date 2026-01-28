@@ -13,11 +13,11 @@ const nextConfig: NextConfig = {
     return [
       {
         source: '/docs',
-        destination: 'http://localhost:3001/docs',
+        destination: 'http://localhost:3001',
       },
       {
         source: '/docs/:path*',
-        destination: 'http://localhost:3001/docs/:path*',
+        destination: 'http://localhost:3001/:path*',
       },
     ];
   },
