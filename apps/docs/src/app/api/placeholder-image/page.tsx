@@ -11,7 +11,7 @@ export default function PlaceholderImagePage() {
 
                 <div className="space-y-8">
                     <div className="space-y-4">
-                        <h3 className="text-xl font-semibold text-neutral-900 dark:text-neutral-50">Props</h3>
+                        <h3 className="text-xl font-semibold text-neutral-900 dark:text-neutral-50" id="props">Props</h3>
                         <ul className="list-disc pl-5 space-y-2 text-neutral-600 dark:text-neutral-400">
                             <li><code className="text-sm font-mono text-neutral-900 dark:text-neutral-200">action</code> (Required): The Server Action wrapping <code>getPlaceholder</code>.</li>
                             <li><code className="text-sm font-mono text-neutral-900 dark:text-neutral-200">placeholderOptions</code>: Optional configuration for generation.</li>
@@ -21,7 +21,7 @@ export default function PlaceholderImagePage() {
                     </div>
 
                     <div className="space-y-4">
-                        <h3 className="text-xl font-semibold text-neutral-900 dark:text-neutral-50">1. Define Server Action</h3>
+                        <h3 className="text-xl font-semibold text-neutral-900 dark:text-neutral-50" id="define-server-action">1. Define Server Action</h3>
                         <p className="text-neutral-600 dark:text-neutral-400">
                             First, create a Server Action that wraps <code>getPlaceholder</code>. This is necessary because <code>{"<PlaceholderImage />"}</code> is a Client Component and cannot import server-side logic directly.
                         </p>
@@ -35,7 +35,7 @@ export async function getPlaceholderAction(url: string) {
                     </div>
 
                     <div className="space-y-4">
-                        <h3 className="text-xl font-semibold text-neutral-900 dark:text-neutral-50">2. Usage</h3>
+                        <h3 className="text-xl font-semibold text-neutral-900 dark:text-neutral-50" id="usage">2. Usage</h3>
                         <CodeBlock code={`'use client'
 import { PlaceholderImage } from 'next-image-placeholder/react'
 import { getPlaceholderAction } from './actions'
