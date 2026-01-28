@@ -1,9 +1,10 @@
 import "./globals.css";
-import { StripePanels } from "@/components/stripe-panels";
+
 import { Sidebar } from "@/components/sidebar";
 import { TableOfContents } from "@/components/toc";
 import { Logo } from "@/components/logo";
 import { Pager } from "@/components/pager";
+import { PageHeader } from "@/components/page-header";
 import { cn } from "@/lib/utils";
 
 export default function RootLayout({
@@ -14,12 +15,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="antialiased font-sans">
-        <div className="relative h-screen flex flex-col items-center overflow-hidden bg-white dark:bg-neutral-950">
-          <StripePanels />
-
-          <div className="w-full max-w-6xl relative z-0 h-full flex flex-col bg-white/50 dark:bg-neutral-950/50">
-            {/* Header Line */}
-            <div className="h-px w-full bg-neutral-200 dark:bg-neutral-800 shrink-0" />
+        <div className="relative h-screen flex flex-col overflow-hidden bg-white dark:bg-neutral-950">
+          <div className="w-full relative z-0 h-full flex flex-col bg-white dark:bg-neutral-950">
 
             <header className="h-16 shrink-0 border-b border-neutral-200 dark:border-neutral-800 flex items-center px-6 justify-between bg-neutral-50/80 dark:bg-neutral-950/80 backdrop-blur-sm z-50">
               <a href="/" className="hover:opacity-80 transition-opacity">
@@ -46,6 +43,7 @@ export default function RootLayout({
 
               {/* Main Content */}
               <main className="flex-1 min-w-0 py-12 px-8 prose-custom overflow-y-auto h-full">
+                <PageHeader />
                 {children}
                 <Pager />
               </main>

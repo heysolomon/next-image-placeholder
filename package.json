@@ -1,5 +1,5 @@
 {
-  "name": "next-image-placeholder-monorepo",
+  "name": "next-image-placeholder",
   "private": true,
   "scripts": {
     "build": "turbo build",

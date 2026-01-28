@@ -21,7 +21,7 @@ export function Pager() {
     if (!prev && !next) return null;
 
     return (
-        <div className="flex flex-row items-center justify-between mt-16 pt-8 border-t border-neutral-200 dark:border-neutral-800">
+        <div className="pager flex flex-row items-center justify-between mt-16 pt-8 border-t border-neutral-200 dark:border-neutral-800">
             {prev ? (
                 <Link
                     href={prev.href}
