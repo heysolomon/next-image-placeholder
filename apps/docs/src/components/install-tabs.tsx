@@ -35,7 +35,7 @@ export function InstallTabs() {
                         {activeTab === pm && (
                             <motion.div
                                 layoutId="activeTab"
-                                className="absolute bottom-0 left-0 right-0 h-0.5 bg-indigo-500"
+                                className="absolute bottom-0 left-0 right-0 h-0.5 bg-neutral-900 dark:bg-neutral-50"
                                 transition={{ type: "spring", stiffness: 500, damping: 30 }}
                             />
                         )}

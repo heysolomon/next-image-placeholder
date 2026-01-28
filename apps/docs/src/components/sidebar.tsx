@@ -46,7 +46,7 @@ export function Sidebar() {
                                             className={cn(
                                                 "block px-2 py-1.5 text-sm rounded-md transition-colors",
                                                 isActive
-                                                    ? "text-indigo-500 bg-indigo-50/50 dark:bg-indigo-900/20 font-medium"
+                                                    ? "text-neutral-900 bg-neutral-100 dark:bg-neutral-800 dark:text-neutral-50 font-medium"
                                                     : "text-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-50"
                                             )}
                                         >
