@@ -7,6 +7,32 @@ import { Pager } from "@/components/pager";
 import { PageHeader } from "@/components/page-header";
 import { cn } from "@/lib/utils";
 
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: {
+    default: "Documentation | next-image-placeholder",
+    template: "%s | next-image-placeholder",
+  },
+  description: "Comprehensive documentation for next-image-placeholder. Learn how to generate server-side blur placeholders and dominant colors.",
+  keywords: ["documentation", "next.js", "image", "guide", "tutorial", "api reference"],
+  openGraph: {
+    title: "Documentation | next-image-placeholder",
+    description: "Learn how to use next-image-placeholder for better image performance.",
+    url: "https://next-image-placeholder-docs.vercel.app",
+    siteName: "next-image-placeholder Docs",
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Documentation | next-image-placeholder",
+    description: "Complete guide for next-image-placeholder.",
+    creator: "@heysolomon",
+  },
+  metadataBase: new URL("https://next-image-placeholder-docs.vercel.app"),
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -19,7 +45,7 @@ export default function RootLayout({
           <div className="w-full relative z-0 h-full flex flex-col bg-white dark:bg-neutral-950">
 
             <header className="h-16 shrink-0 border-b border-neutral-200 dark:border-neutral-800 flex items-center px-6 justify-between bg-neutral-50/80 dark:bg-neutral-950/80 backdrop-blur-sm z-50">
-              <a href="https://next-image-placeholder-web.vercel.app" className="hover:opacity-80 transition-opacity">
+              <a href="https://next-image-placeholder.vercel.app" className="hover:opacity-80 transition-opacity">
                 <Logo />
               </a>
               <nav className="flex gap-4 text-sm text-neutral-500">
