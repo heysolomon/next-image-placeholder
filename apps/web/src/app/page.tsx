@@ -86,7 +86,7 @@ export function Gallery({ src }: { src: string }) {
         <div className="flex flex-col items-center justify-center pt-20 pb-0 px-6">
           <div className="space-y-6 text-center max-w-4xl">
             <div className="inline-flex items-center px-3 py-1 rounded-full border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900 text-xs font-medium text-neutral-600 dark:text-neutral-400 mb-4">
-              v1.1.2 is now available
+              v1.1.4 is now available
             </div>
 
             <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight text-neutral-900 dark:text-neutral-50">
