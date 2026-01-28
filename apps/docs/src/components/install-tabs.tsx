@@ -11,10 +11,10 @@ export function InstallTabs() {
     const [activeTab, setActiveTab] = useState<PackageManager>("npm");
 
     const commands: Record<PackageManager, string> = {
-        npm: "npm install next-image-placeholder",
-        pnpm: "pnpm add next-image-placeholder",
-        yarn: "yarn add next-image-placeholder",
-        bun: "bun add next-image-placeholder",
+        npm: "npm install next-image-placeholder sharp",
+        pnpm: "pnpm add next-image-placeholder sharp",
+        yarn: "yarn add next-image-placeholder sharp",
+        bun: "bun add next-image-placeholder sharp",
     };
 
     return (

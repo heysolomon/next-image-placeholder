@@ -24,15 +24,15 @@ export function CopyButton({ text, className }: CopyButtonProps) {
             <button
                 onClick={handleCopy}
                 className={cn(
-                    "p-2 rounded-md hover:bg-neutral-800 transition-colors focus:outline-none focus:ring-1 focus:ring-neutral-700",
+                    "p-1.5 rounded-md hover:bg-neutral-800 transition-colors focus:outline-none focus:ring-1 focus:ring-neutral-700",
                     className
                 )}
                 aria-label="Copy to clipboard"
             >
                 {copied ? (
-                    <Check className="h-4 w-4 text-green-500" />
+                    <Check className="h-3.5 w-3.5 text-green-500" />
                 ) : (
-                    <Copy className="h-4 w-4 text-neutral-400" />
+                    <Copy className="h-3.5 w-3.5" />
                 )}
             </button>
         </Tooltip>

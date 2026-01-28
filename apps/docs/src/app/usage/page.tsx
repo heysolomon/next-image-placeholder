@@ -9,25 +9,18 @@ export default function UsagePage() {
           <p className="text-neutral-600 dark:text-neutral-400 text-lg leading-relaxed">
             Use <code>getPlaceholder</code> in a Server Component to generate the blur data.
           </p>
-          <CodeBlock code={`import Image from "next/image";
-import { getPlaceholder } from "next-image-placeholder";
+          <CodeBlock code={`// Server Component
+const { base64 } = await getPlaceholder(
+  "https://images.unsplash.com/photo-1619441207978-3d326c46e2c9?q=80&w=2669&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+);
 
-export default async function Page() {
-  const { base64 } = await getPlaceholder(
-    "https://example.com/image.jpg"
-  );
-
-  return (
-    <Image
-      src="https://example.com/image.jpg"
-      placeholder="blur"
-      blurDataURL={base64}
-      width={500}
-      height={300}
-      alt="Example"
-    />
-  );
-}`} />
+// Render
+<Image
+  src="https://images.unsplash.com/photo-1619441207978-3d326c46e2c9?q=80&w=2669&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+  placeholder="blur"
+  blurDataURL={base64}
+  alt="Demo"
+/>`} />
         </div>
       </div>
 
@@ -50,7 +43,7 @@ const { base64, color } = await getPlaceholder(imageUrl)`} lang="ts" />
           <p className="text-neutral-600 dark:text-neutral-400 leading-relaxed">
             To use placeholders in Client Components, wrap the generation logic in a Server Action.
           </p>
-          <CodeBlock code={`// 1. Create a server action (app/actions.ts)
+          <CodeBlock code={`// 1. Create Server Action (app/actions.ts)
 'use server'
 import { getPlaceholder } from 'next-image-placeholder'
 
@@ -58,7 +51,7 @@ export async function getPlaceholderAction(imageUrl: string) {
   return getPlaceholder(imageUrl)
 }
 
-// 2. Use it in your Client Component
+// 2. Use the component (Recommended)
 'use client'
 import { PlaceholderImage } from 'next-image-placeholder/react'
 import { getPlaceholderAction } from './actions'

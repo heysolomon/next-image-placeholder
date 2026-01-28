@@ -4,26 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 
-const NAV_ITEMS = [
-    {
-        category: "Getting Started",
-        items: [
-            { label: "Introduction", href: "/" },
-            { label: "Installation", href: "/installation" },
-            { label: "Usage", href: "/usage" },
-        ],
-    },
-    {
-        category: "API Reference",
-        items: [
-            { label: "getPlaceholder", href: "/api/get-placeholder" },
-            { label: "getBlurDataURL", href: "/api/get-blur-data-url" },
-            { label: "getColor", href: "/api/get-color" },
-            { label: "usePlaceholder", href: "/api/use-placeholder" },
-            { label: "<PlaceholderImage />", href: "/api/placeholder-image" },
-        ],
-    },
-];
+import { DOCS_CONFIG } from "@/config/docs";
 
 export function Sidebar() {
     const pathname = usePathname();
@@ -31,7 +12,7 @@ export function Sidebar() {
     return (
         <aside className="w-64 border-r border-neutral-200 dark:border-neutral-800 hidden md:block shrink-0 h-full overflow-y-auto py-8 pr-6 pl-2">
             <div className="space-y-6">
-                {NAV_ITEMS.map((section) => (
+                {DOCS_CONFIG.nav.map((section) => (
                     <div key={section.category}>
                         <h4 className="font-medium text-sm text-neutral-900 dark:text-neutral-50 mb-3 px-2">
                             {section.category}

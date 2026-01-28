@@ -20,7 +20,7 @@ export async function CodeBlock({ code, lang = "tsx", className }: CodeBlockProp
                 <CopyButton text={code} className="bg-neutral-100/10 backdrop-blur-sm border border-neutral-200/20 text-neutral-500 dark:text-neutral-400" />
             </div>
             <div
-                className="p-4 text-sm font-mono overflow-x-auto [&>pre]:!bg-transparent [&>pre]:!m-0"
+                className="p-4 text-sm font-mono overflow-x-auto [&>pre]:bg-transparent! [&>pre]:m-0!"
                 dangerouslySetInnerHTML={{ __html: html }}
             />
         </div>

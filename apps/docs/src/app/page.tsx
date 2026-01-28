@@ -27,6 +27,17 @@ export default function DocsPage() {
           ))}
         </ul>
       </div>
+      <div>
+        <h2 id="acknowledgements" className="text-2xl font-bold text-neutral-900 dark:text-neutral-50 mb-4">Acknowledgements</h2>
+        <ul className="list-disc pl-5 space-y-2 text-neutral-600 dark:text-neutral-400 leading-relaxed">
+          <li>
+            <a href="https://sharp.pixelplumbing.com/" target="_blank" rel="noreferrer" className="underline hover:text-neutral-900 dark:hover:text-neutral-50 transition-colors">sharp</a> - High performance Node.js image processing
+          </li>
+          <li>
+            <a href="https://github.com/fast-average-color/fast-average-color-node" target="_blank" rel="noreferrer" className="underline hover:text-neutral-900 dark:hover:text-neutral-50 transition-colors">fast-average-color-node</a> - A simple library that calculates the average color of an image
+          </li>
+        </ul>
+      </div>
     </div>
   );
 }

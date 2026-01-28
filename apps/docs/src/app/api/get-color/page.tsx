@@ -24,13 +24,14 @@ export default function GetColorPage() {
 
                     <div className="space-y-4">
                         <h3 className="text-xl font-semibold text-neutral-900 dark:text-neutral-50">Example</h3>
-                        <CodeBlock code={`import { getColor } from 'next-image-placeholder';
+                        <CodeBlock code={`// Server Component
+const color = await getColor(
+  "https://images.unsplash.com/photo-1619441207978-3d326c46e2c9?q=80&w=2669&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+);
 
-const color = await getColor('/image.jpg');
-
-// Use as solid color background
+// Render
 <div style={{ backgroundColor: color }}>
-  <Image src="/image.jpg" fill alt="..." />
+  <Image src="..." />
 </div>`} lang="tsx" />
                     </div>
                 </div>
