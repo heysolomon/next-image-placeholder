@@ -28,6 +28,7 @@ export function DemoTabs({
 
     // Clip-path animation state
     const [clipPath, setClipPath] = useState("inset(0 100% 0 0 round 9999px)");
+    const [hasMeasured, setHasMeasured] = useState(false);
     const containerRef = useRef<HTMLDivElement>(null);
     const buttonRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
@@ -48,6 +49,7 @@ export function DemoTabs({
                 const right = (containerRect.width - (activeRect.left - containerRect.left + activeRect.width)) - offset;
 
                 setClipPath(`inset(0 ${right}px 0 ${left}px round 9999px)`);
+                setHasMeasured(true);
             }
         };
 
@@ -213,21 +215,23 @@ export function DemoTabs({
                             </div>
 
                             {/* Layer 2: Active State (Top - Clipped) */}
-                            <div
-                                className="absolute inset-0.5 flex bg-neutral-800 z-10 pointer-events-none overflow-hidden transition-[clip-path] duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] will-change-[clip-path]"
-                                style={{ clipPath }}
-                            >
-                                {(Object.keys(modes) as DemoMode[]).map((key) => (
-                                    <button
-                                        key={`active-${key}`}
-                                        className="px-4 py-2 rounded-full text-xs font-medium whitespace-nowrap text-white"
-                                        aria-hidden="true"
-                                        tabIndex={-1}
-                                    >
-                                        {modes[key].label}
-                                    </button>
-                                ))}
-                            </div>
+                            {hasMeasured && (
+                                <div
+                                    className="absolute inset-0.5 flex bg-neutral-800 z-10 pointer-events-none overflow-hidden transition-[clip-path] duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] will-change-[clip-path]"
+                                    style={{ clipPath }}
+                                >
+                                    {(Object.keys(modes) as DemoMode[]).map((key) => (
+                                        <button
+                                            key={`active-${key}`}
+                                            className="px-4 py-2 rounded-full text-xs font-medium whitespace-nowrap text-white"
+                                            aria-hidden="true"
+                                            tabIndex={-1}
+                                        >
+                                            {modes[key].label}
+                                        </button>
+                                    ))}
+                                </div>
+                            )}
                         </div>
                         <div className="flex items-center gap-1">
                             <Tooltip content="Refresh Demo">
