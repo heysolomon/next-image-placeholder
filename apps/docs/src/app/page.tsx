@@ -11,6 +11,18 @@ export default function DocsPage() {
         </p>
       </div>
 
+
+
+      <div className="bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-900 rounded-lg p-4">
+        <h2 className="text-base font-semibold text-blue-900 dark:text-blue-200 mb-1 flex items-center gap-2">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10" /><line x1="12" x2="12" y1="8" y2="12" /><line x1="12" x2="12.01" y1="16" y2="16" /></svg>
+          Best Use Case
+        </h2>
+        <p className="text-sm text-blue-800 dark:text-blue-300 leading-relaxed">
+          The primary use case for this library is handling <strong>dynamic, remote images</strong> (e.g., from a CMS or API) where Next.js cannot automatically generate blur placeholders at build time. For static local images, Next.js handles this out of the box.
+        </p>
+      </div>
+
       <div className="border-t border-neutral-200 dark:border-neutral-800 pt-8">
         <h2 className="text-2xl font-semibold text-neutral-900 dark:text-neutral-50 mb-6" id="features">Features</h2>
         <ul className="grid sm:grid-cols-2 gap-4">
@@ -38,6 +50,6 @@ export default function DocsPage() {
           </li>
         </ul>
       </div>
-    </div>
+    </div >
   );
 }
