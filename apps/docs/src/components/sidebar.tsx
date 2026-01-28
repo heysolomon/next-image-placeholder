@@ -18,6 +18,9 @@ const NAV_ITEMS = [
         items: [
             { label: "getPlaceholder", href: "/api/get-placeholder" },
             { label: "getBlurDataURL", href: "/api/get-blur-data-url" },
+            { label: "getColor", href: "/api/get-color" },
+            { label: "usePlaceholder", href: "/api/use-placeholder" },
+            { label: "<PlaceholderImage />", href: "/api/placeholder-image" },
         ],
     },
 ];
@@ -26,7 +29,7 @@ export function Sidebar() {
     const pathname = usePathname();
 
     return (
-        <aside className="w-64 border-r border-neutral-200 dark:border-neutral-800 hidden md:block shrink-0 sticky top-16 h-[calc(100vh-4rem)] overflow-y-auto py-8 pr-6 pl-2">
+        <aside className="w-64 border-r border-neutral-200 dark:border-neutral-800 hidden md:block shrink-0 h-full overflow-y-auto py-8 pr-6 pl-2">
             <div className="space-y-6">
                 {NAV_ITEMS.map((section) => (
                     <div key={section.category}>

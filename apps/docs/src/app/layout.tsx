@@ -1,6 +1,7 @@
 import "./globals.css";
 import { StripePanels } from "@/components/stripe-panels";
 import { Sidebar } from "@/components/sidebar";
+import { TableOfContents } from "@/components/toc";
 import { cn } from "@/lib/utils";
 
 export default function RootLayout({
@@ -11,14 +12,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="antialiased font-sans">
-        <div className="relative min-h-screen flex flex-col items-center overflow-x-hidden">
+        <div className="relative h-screen flex flex-col items-center overflow-hidden bg-white dark:bg-neutral-950">
           <StripePanels />
 
-          <div className="w-full max-w-6xl relative z-0 min-h-screen flex flex-col">
+          <div className="w-full max-w-6xl relative z-0 h-full flex flex-col bg-white/50 dark:bg-neutral-950/50">
             {/* Header Line */}
-            <div className="h-px w-full bg-neutral-200 dark:bg-neutral-800" />
+            <div className="h-px w-full bg-neutral-200 dark:bg-neutral-800 shrink-0" />
 
-            <header className="h-16 border-b border-neutral-200 dark:border-neutral-800 flex items-center px-6 justify-between bg-neutral-50/80 dark:bg-neutral-950/80 backdrop-blur-sm sticky top-0 z-50">
+            <header className="h-16 shrink-0 border-b border-neutral-200 dark:border-neutral-800 flex items-center px-6 justify-between bg-neutral-50/80 dark:bg-neutral-950/80 backdrop-blur-sm z-50">
               <div className="font-bold text-neutral-900 dark:text-neutral-50">next-image-placeholder</div>
               <nav className="flex gap-4 text-sm text-neutral-500">
                 <a href="/" className="hover:text-neutral-900 dark:hover:text-neutral-50 transition-colors">Home</a>
@@ -26,24 +27,17 @@ export default function RootLayout({
               </nav>
             </header>
 
-            <div className="flex-1 flex w-full">
+            <div className="flex-1 flex w-full overflow-hidden">
               {/* Sidebar */}
               <Sidebar />
 
               {/* Main Content */}
-              <main className="flex-1 min-w-0 py-12 px-8 prose-custom">
+              <main className="flex-1 min-w-0 py-12 px-8 prose-custom overflow-y-auto h-full">
                 {children}
               </main>
 
               {/* Table of Contents */}
-              <aside className="w-64 border-l border-neutral-200 dark:border-neutral-800 hidden lg:block shrink-0 sticky top-16 h-[calc(100vh-4rem)] py-12 px-6">
-                <h5 className="font-medium text-xs uppercase tracking-wider text-neutral-500 mb-4">On this page</h5>
-                <ul className="space-y-2 text-sm text-neutral-500">
-                  <li><a href="#introduction" className="hover:text-neutral-900 dark:hover:text-neutral-50 transition-colors">Introduction</a></li>
-                  <li><a href="#features" className="hover:text-neutral-900 dark:hover:text-neutral-50 transition-colors">Features</a></li>
-                  <li><a href="#installation" className="hover:text-neutral-900 dark:hover:text-neutral-50 transition-colors">Installation</a></li>
-                </ul>
-              </aside>
+              <TableOfContents />
             </div>
           </div>
         </div>
