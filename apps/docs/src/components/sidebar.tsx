@@ -34,7 +34,15 @@ export function Sidebar() {
                                                     : "text-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-50"
                                             )}
                                         >
-                                            {item.label}
+                                            <span className="flex items-center justify-between w-full">
+                                                <span>{item.label}</span>
+                                                {/* @ts-ignore */}
+                                                {item.badge && (
+                                                    <span className="ml-2 px-1.5 py-0.5 text-[10px] font-medium uppercase tracking-wider rounded-md bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400">
+                                                        {item.badge}
+                                                    </span>
+                                                )}
+                                            </span>
                                         </Link>
                                     </li>
                                 );
